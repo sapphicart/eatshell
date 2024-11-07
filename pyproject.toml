@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "eatshell"
-version = "1.0.0"
+version = "1.0.1"
 authors = [
   { name="sapphicart", email="shrutipriya44@gmail.com" },
 ]
@@ -21,8 +21,6 @@ dependencies = [
     "colorama",
     "pwntools",
     "python-dotenv",
-    "os",
-    "stat",
 ]
 keywords= ["python", "shellcode-extractor", "shellcode-loader", "shellcode-assembler", "shellcode"]
 
