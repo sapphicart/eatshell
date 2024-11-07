@@ -27,9 +27,11 @@ def shellcoder(filename, hex):
             #print("%d bytes - Found NULL byte" % len(shellcode)) if [i for i in shellcode if i == 0] else print("%d bytes - No NULL bytes" % len(shellcode))
             print(f"{Fore.LIGHTBLUE_EX}Shellcode length: {len(shellcode)} bytes")
             if 0 in shellcode:
-                print(f"{Fore.LIGHTRED_EX}[!!] Warning: Found NULL byte")
+                print(f"{Fore.LIGHTRED_EX}\n[!!] Warning: Found NULL byte.")
+                print(f"{Fore.LIGHTRED_EX}Check for NULL bytes below:\n{Fore.RESET}")
+                print(f"{Fore.RED}{disasm(shellcode)}\n")
             else:
-                print(f"{Fore.LIGHTGREEN_EX}[+] No NULL bytes!")
+                print(f"{Fore.LIGHTGREEN_EX}\n[+] No NULL bytes!\n")
         except Exception as e:
             print(f"{Fore.RED}[-] Error: {Fore.LIGHTRED_EX}{e}")
     else:
@@ -71,15 +73,6 @@ def cli(hush):
     arch = os.getenv('ARCH')
     log_level = os.getenv('LOG_LEVEL')
     #context(os="linux", arch="amd64", log_level="error")\
-
-    if system and arch and log_level:
-        try:
-            context(os=system, arch=arch, log_level=log_level)
-        except Exception as e:
-            print(f"{Fore.RED}[-] Error: {Fore.LIGHTRED_EX}{e}")
-    else:
-        print(f"{Fore.RED}[-] Error: Could not parse context. Create a .env file with the required parameters. Check Usage for more details.")
-
 
     print(f"""{Fore.YELLOW}
         ⠀⠀⠀⠀⣀⣤⣴⣶⣶⣶⣦⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -142,6 +135,15 @@ switch.{Fore.RESET}
 
     else:
         print(f"{Fore.YELLOW}[/] Usage and Warning info suppressed.\n{Fore.RESET}")
+
+
+    if system and arch and log_level:
+        try:
+            context(os=system, arch=arch, log_level=log_level)
+        except Exception as e:
+            print(f"{Fore.RED}[-] Error: {Fore.LIGHTRED_EX}{e}")
+    else:
+        print(f"{Fore.RED}[-] Error: Could not parse context. Create a .env file with the required parameters. Check Usage for more details.{Fore.RESET}")
 
 
 @click.command()
