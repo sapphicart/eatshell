@@ -12,6 +12,7 @@
 
 eatshell is a simple command line tool to automate the process of shellcode extraction, loading and assembling. eatshell contains three commands `extract`, `load`, and `assemble`.
 
+>[!NOTE]
 **Note: eatshell is meant for small-scale application and primarily created for personal use only.**
 
 ## Requirements
@@ -50,7 +51,7 @@ There are three commands available for `eatshell`:
 - extract
 - load
 
-```bash
+```
 $ eatshell assemble --shellcode <hex string> --file <filename>
     
     Use this command to assemble given shellcode
@@ -58,7 +59,7 @@ $ eatshell assemble --shellcode <hex string> --file <filename>
     the owner.
 ```
 
-```bash
+```
 $ eatshell extract --file <filename> --hex <boolean>
         
     Use this command to extract shellcode
@@ -66,12 +67,22 @@ $ eatshell extract --file <filename> --hex <boolean>
     Turn --hex on for hex encoding.
 ```
 
-```bash
+```
 $ eatshell load --shellcode <hex string>
 
     Use this command to run the provided
     shellcode interactively.
     Use with caution, might not work everytime.
+```
+
+>[!WARNING]
+Create an `.env` file with the following variables. Otherwise, the program might not work.
+
+`.env` file structure example:
+```
+OS=linux
+ARCH=amd64
+LOG_LEVEL=error
 ```
 
 ## License
